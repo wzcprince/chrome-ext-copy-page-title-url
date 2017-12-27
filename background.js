@@ -92,7 +92,7 @@ var parent = chrome.contextMenus.create({"title": title, "onclick": copyAllTitle
 
 
 chrome.commands.onCommand.addListener(function(command) {
-	// 快捷键
+	// 快捷键 参考 https://developer.chrome.com/apps/commands   https://developer.chrome.com/extensions/manifest 
 	var commandName = command;
 	if(commandName == "CopyPageTitleURL"){
 		copyTitleURL(); //chrome.tabs.executeScript({file:"test_script.js"});
