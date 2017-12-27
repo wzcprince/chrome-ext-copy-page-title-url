@@ -1,0 +1,29 @@
+{
+  "commands": {
+    "CopyPageTitleURL": {
+      "suggest_key": {
+        "default": "Ctrl+Shift+c"
+      },
+      "description": "copy the current page's title and url"
+    }
+  },
+  
+   "background": {
+      "page": "background.html"
+   },
+   "description": "Lets you copy URL, Title, Title + URL of All Open Tabs or Current tabs in Text or HTML format using the right click menu.",
+   "homepage_url": "http://code.google.com/p/copy-url-and-title/",
+   "icons": {
+      "128": "img/icon128.png",
+      "16": "img/icon16.png",
+      "32": "img/icon32.png",
+      "48": "img/icon48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCZ1+lUF7OpC12MFWpOp6ghF2QClPc/ipac4OJ7na4rZb1O8AX0tTpyiafuV7b64K/Xl2jig/KieRqnxIAVdZ2S++0ecgu90uxeExJL+mf4j47frM7l9K/0cVGVQ+rJ0jZlGsdfVak8PuOoWD9SwpX1GeekDwSIKK9e2MaEnwvxMwIDAQAB",
+   "manifest_version": 3,
+   "name": "Copy URL + Title Modified",
+   "permissions": [ "contextMenus", "unlimitedStorage", "tabs", "http://*/*", "https://*/*", "clipboardRead", "clipboardWrite" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.0"
+   
+}
