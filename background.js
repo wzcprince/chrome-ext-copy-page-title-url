@@ -36,7 +36,7 @@ var s = '';
 // Copy to the clipboard in text format
 function copyTitleURL() {
   chrome.tabs.getSelected(null, function(tab) {
-    copyToClipboard( tab.title + "\n" + tab.url );    
+    copyToClipboard( tab.title + "\n<" + tab.url + ">"); // 2018年01月04日 适配markdown 哈哈
   });
 }
 
