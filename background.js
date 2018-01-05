@@ -35,9 +35,24 @@ var s = '';
 
 // Copy to the clipboard in text format
 function copyTitleURL() {
-  chrome.tabs.getSelected(null, function(tab) {
-    copyToClipboard( tab.title + "\n<" + tab.url + ">"); // 2018年01月04日 适配markdown 哈哈
-  });
+    chrome.tabs.getSelected(null, function(tab) {
+        // 2018年01月04日 适配markdown 哈哈
+        // <https://www.w3schools.com/jsref/jsref_decodeuri.asp>
+        // copyToClipboard( tab.title + "\n<" + decodeURI(tab.url) + ">\n<" + tab.url + ">");
+        
+        /* 2018年01月05日
+         * 带中文的github链接，chrome地址栏显示的是 https://github.com/wzcprince/blog2017/blob/master/software-architecture.md#%E9%87%8D%E8%A6%81%E4%B9%A6%E7%B1%8D
+         * decodeURI之后正常： 
+         * blog2017/software-architecture.md at master · wzcprince/blog2017
+         * <https://github.com/wzcprince/blog2017/blob/master/software-architecture.md#重要书籍
+         * 
+         * 带中文的 维基百科链接，chrome地址栏可以显示中文， https://zh.wikipedia.org/wiki/敏捷软件开发
+         * decodeURI之后竟然也是正常的，哈哈哈哈哈哈哈哈哈
+         * 敏捷软件开发 - 维基百科，自由的百科全书
+         * <https://zh.wikipedia.org/wiki/敏捷软件开发
+         */
+        copyToClipboard( tab.title + "\n<" + decodeURI(tab.url));
+        });
 }
 
 function copyAllTitleURL() {
