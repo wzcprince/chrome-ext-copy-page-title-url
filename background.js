@@ -51,9 +51,18 @@ function copyTitleURL() {
          * 敏捷软件开发 - 维基百科，自由的百科全书
          * <https://zh.wikipedia.org/wiki/敏捷软件开发
          */
-        copyToClipboard( tab.title + "\n<" + decodeURI(tab.url));
+        copyToClipboard( tab.title + "\n<" + decodeURI(tab.url) + ">");
         });
 }
+
+
+// Copy to the clipboard in text format
+function copyTitleURLAsMarkdown() {
+    chrome.tabs.getSelected(null, function(tab) {
+        copyToClipboard( "[" + tab.title + "]" + "(" + decodeURI(tab.url) + ")");
+        });
+}
+
 
 function copyAllTitleURL() {
 var s = '';
@@ -97,7 +106,9 @@ function copyToClipboard(str) {
 var title="Copy Page Title and URL"
 var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURL});
 var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURL});
-var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURL});
+var title="Copy Page Title and URL As Markdown"
+var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURLAsMarkdown});
+var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURLAsMarkdown});
 
 
 
