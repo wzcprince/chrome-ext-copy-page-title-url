@@ -2,8 +2,9 @@
 
 function get_succinct_tab_title(title)
 {
-    // [sək'sɪŋkt] 间接地
-    title = title.replace("- 维基百科，自由的百科全书", "");
+    // [sək'sɪŋkt] 简洁的
+    title = title.replace(" - 维基百科，自由的百科全书", "");
+    title = title.replace(" - CSDN博客", "");
     return title
 }
 
