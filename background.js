@@ -5,6 +5,9 @@ function get_succinct_tab_title(title)
     // [sək'sɪŋkt] 简洁的
     title = title.replace(" - 维基百科，自由的百科全书", "");
     title = title.replace(" - CSDN博客", "");
+    // blog2017/network.md at master · wzcprince/blog2017
+    title = title.replace("at master · wzcprince/blog2017", "");
+    title = title.replace("blog2017/", "");
     return title
 }
 
@@ -62,7 +65,17 @@ function copyTitleURL() {
          * 敏捷软件开发 - 维基百科，自由的百科全书
          * <https://zh.wikipedia.org/wiki/敏捷软件开发
          */
-        copyToClipboard( get_succinct_tab_title(tab.title) + "<" + decodeURI(tab.url) + ">");
+         
+        title = get_succinct_tab_title(tab.title)
+        if (title.length > 16)
+        {
+            title += "\n";
+        }
+        else
+        {
+            title += " ";
+        }
+        copyToClipboard( title + "<" + decodeURI(tab.url) + ">");
         });
 }
 
