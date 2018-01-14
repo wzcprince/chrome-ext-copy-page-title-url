@@ -6,8 +6,10 @@ function get_succinct_tab_title(title)
     title = title.replace(" - 维基百科，自由的百科全书", "");
     title = title.replace(" - CSDN博客", "");
     // blog2017/network.md at master · wzcprince/blog2017
-    title = title.replace("at master · wzcprince/blog2017", "");
-    title = title.replace("blog2017/", "");
+    if (-1 != title.indexOf("at master · wzcprince/blog2017"))
+    {
+        return ""
+    }
     return title
 }
 
