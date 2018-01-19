@@ -1,6 +1,6 @@
 
 
-function get_succinct_tab_title(title)
+function get_tab_succinct_title(title)
 {
     // [sək'sɪŋkt] 简洁的
     title = title.replace(" - 维基百科，自由的百科全书", "");
@@ -13,6 +13,15 @@ function get_succinct_tab_title(title)
     return title
 }
 
+function get_tab_original_url(url)
+{
+    // 我正在csdn编辑博客，此时的url地址是编辑器的地址，需要把此地址加工一下喽
+    // 例如 http://mp.blog.csdn.net/mdeditor/index/79069418#virtio
+    
+    url = url.replace("mp.blog.csdn.net/mdeditor/index/", "blog.csdn.net/wzcprince/article/details/");
+    return url
+    
+}
 
 function copyURL() {
   chrome.tabs.getSelected(null, function(tab) {
@@ -68,7 +77,7 @@ function copyTitleURL() {
          * <https://zh.wikipedia.org/wiki/敏捷软件开发
          */
          
-        title = get_succinct_tab_title(tab.title)
+        title = get_tab_succinct_title(tab.title)
         if (title.length > 16)
         {
             title += "\n";
@@ -77,14 +86,14 @@ function copyTitleURL() {
         {
             title += " ";
         }
-        copyToClipboard( title + "<" + decodeURI(tab.url) + ">");
+        copyToClipboard( title + "<" + get_tab_original_url(decodeURI(tab.url)) + ">");
         });
 }
 
 // Copy to the clipboard in text format
 function copyTitleURLAsMarkdown() {
     chrome.tabs.getSelected(null, function(tab) {
-        copyToClipboard( "[" + get_succinct_tab_title(tab.title) + "]" + "(" + decodeURI(tab.url) + ")");
+        copyToClipboard( "[" + get_tab_succinct_title(tab.title) + "]" + "(" + get_tab_original_url(decodeURI(tab.url)) + ")");
         });
 }
 
