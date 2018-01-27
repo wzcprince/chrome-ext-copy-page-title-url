@@ -86,7 +86,7 @@ function copyTitleURL() {
         {
             title += " ";
         }
-        copyToClipboard( title + "<" + get_tab_original_url(decodeURI(tab.url)) + ">");
+        copyToClipboard( title + "" + get_tab_original_url(decodeURI(tab.url)) + "");
         });
 }
 
