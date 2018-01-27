@@ -90,6 +90,23 @@ function copyTitleURL() {
         });
 }
 
+
+// URL 不加尖括号
+function copyTitlePureURL() {
+    chrome.tabs.getSelected(null, function(tab) {
+         
+        title = get_tab_succinct_title(tab.title)
+        if (title.length > 16)
+        {
+            title += "\n";
+        }
+        else
+        {
+            title += " ";
+        }
+        copyToClipboard( title + "" + get_tab_original_url(decodeURI(tab.url)) + "");
+        });
+}
 // Copy to the clipboard in text format
 function copyTitleURLAsMarkdown() {
     chrome.tabs.getSelected(null, function(tab) {
@@ -139,7 +156,9 @@ function copyToClipboard(str) {
 
 var title="Copy Page Title and URL"
 var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURL});
-var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURL});
+var title="Copy Page Title and pure URL"
+var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitlePureURL});
+var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitlePureURL});
 var title="Copy Page Title and URL As Markdown"
 var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURLAsMarkdown});
 var parent = chrome.contextMenus.create({"title": title, "onclick": copyTitleURLAsMarkdown});
