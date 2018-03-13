@@ -71,14 +71,25 @@ function copyTitleURL() {
      * 敏捷软件开发 - 维基百科，自由的百科全书
      * <https://zh.wikipedia.org/wiki/敏捷软件开发
      */
-
-    title = get_tab_succinct_title(tab.title)
-    if (title.length > 16) {
-      title += "\n";
-    } else {
-      title += " ";
+    url = decodeURI(tab.url)
+    if (-1 != url.indexOf("baidu.com/issue/DuerOS-Cloud")) {
+      // 在问题单的页面上复制，得到单号
+      const regex = /DuerOS-Cloud-[0-9]+/
+      let array = regex.exec(url)
+      if (array!==null) {
+        copyToClipboard(array[0])
+      }
     }
-    copyToClipboard(title + "<" + get_tab_original_url(decodeURI(tab.url)) + ">");
+    else {
+      title = get_tab_succinct_title(tab.title)
+      if (title.length > 16) {
+        title += "\n";
+      } else {
+        title += " ";
+      }
+      copyToClipboard(title + "<" + get_tab_original_url(url) + ">");  
+
+    }
   });
 }
 
