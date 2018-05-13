@@ -1,7 +1,11 @@
+// https://developer.chrome.com/extensions/tabs
+
 function get_tab_succinct_title(title) {
   // [sək'sɪŋkt] 简洁的
   title = title.replace(" - 维基百科，自由的百科全书", "");
   title = title.replace(" - CSDN博客", "");
+  title = title.replace(" - 百度Wiki平台", "");
+  title = title.replace(" - AGroup –", "");
   // blog2017/network.md at master · wzcprince/blog2017
   if (-1 != title.indexOf("at master · wzcprince/blog2017")) {
     return ""
@@ -76,20 +80,23 @@ function copyTitleURL() {
       // 在问题单的页面上复制，得到单号
       const regex = /DuerOS-Cloud-[0-9]+/
       let array = regex.exec(url)
-      if (array!==null) {
-        copyToClipboard(array[0])
+      if (array !== null) {
+        // copyToClipboard(array[0])
+        title = array[0]
       }
+    } else if (-1 != url.indexOf("#")) {
+      title = url.slice(url.indexOf("#") + 1);
+    } else {
+      title = get_tab_succinct_title(tab.title);
     }
-    else {
-      title = get_tab_succinct_title(tab.title)
-      if (title.length > 16) {
-        title += "\n";
-      } else {
-        title += " ";
-      }
-      copyToClipboard(title + "<" + get_tab_original_url(url) + ">");  
-
-    }
+    /*
+    if (title.length > 16) {
+      title += "\n";
+    } else {
+      title += " ";
+    }*/
+    //copyToClipboard(title + "<" + getf_tab_original_url(url) + ">");
+    copyToClipboard("[" + title + "]" + "(" + get_tab_original_url(url) + ")");
   });
 }
 
